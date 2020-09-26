@@ -1,5 +1,6 @@
 """
-Taken from https://raw.githubusercontent.com/open-dynamic-robot-initiative/robot_properties_solo/master/python/robot_properties_solo/config.py
+Modified from 
+https://raw.githubusercontent.com/open-dynamic-robot-initiative/robot_properties_solo/master/python/robot_properties_solo/config.py
 """
 
 import numpy as np
@@ -10,6 +11,9 @@ from os import environ
 import pinocchio as se3
 from pinocchio.utils import zero
 from pinocchio.robot_wrapper import RobotWrapper
+
+import os
+
 
 class SoloAbstract(object):
 	""" Abstract class used for all Solo robots. """
@@ -124,6 +128,8 @@ class SoloConfig(SoloAbstract):
 
 Solo8Config = SoloConfig
 
+"""
+Not needed as primarily focus right now is the Solo 8
 class Solo12Config(SoloAbstract):
 	robot_family = "solo"
 	robot_name = "solo12"
@@ -189,3 +195,4 @@ class Solo12Config(SoloAbstract):
 	q0[:] = initial_configuration
 	v0 = zero(robot_model.nv)
 	a0 = zero(robot_model.nv)
+"""
