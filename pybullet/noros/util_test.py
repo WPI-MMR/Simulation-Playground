@@ -4,6 +4,7 @@ import unittest
 import util
 import sys
 
+
 class TestUtils(unittest.TestCase):
   def test_configuration_options(self):
     options = {
