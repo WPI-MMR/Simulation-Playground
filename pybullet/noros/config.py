@@ -129,7 +129,9 @@ class SoloConfig(SoloAbstract):
 Solo8Config = SoloConfig
 
 """
-Not needed as primarily focus right now is the Solo 8
+Not needed as the primary focus right now is the Solo 8
+
+
 class Solo12Config(SoloAbstract):
   robot_family = "solo"
   robot_name = "solo12"
