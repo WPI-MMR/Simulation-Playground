@@ -13,5 +13,17 @@ class TestSoloConfig(unittest.TestCase):
     self.assertEqual(b.mesh_path, '/base/path/meshes')
     self.assertEqual(b.yaml_path, '/base/path/yaml/config.yaml')
 
+  def test_config_inheritance(self):
+    solo8 = solo.Solo8Vanilla('/base/path')
+
+    with self.subTest('no modification'):
+      self.assertEqual(solo8.motor_inertia, 0.0000045)
+      self.assertEqual(solo8.motor_gear_ration, 9)
+    
+    with self.subTest('instance modification'):
+      solo8.motor_gear_ration = 100
+      self.assertEqual(solo8.motor_gear_ration, 100)
+      self.assertEqual(solo.Solo8Vanilla.motor_gear_ration, 9)
+
 if __name__ == '__main__':
   unittest.main()

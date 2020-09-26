@@ -56,10 +56,9 @@ class BaseSolo(object):
   def max_torque(self):
    return self.motor_torque_constant * self.max_current
 
-  def build_robot_wrapper(self):
+  def _build_robot(self):
     # Rebuild the robot wrapper instead of using an existing model to also load
     # the visuals
-
     robot = se3robot_wrapper.RobotWrapper.BuildFromURDF(
       self.urdf_path, self.mesh_path, se3.JointModelFreeFlyer())
 
@@ -103,11 +102,11 @@ class Solo8Vanilla(BaseSolo):
     self.v0 = None
     self.a0 = None
 
-    super.__init__(model_path, self.robot_name, self.yaml_config, 
+    super().__init__(model_path, self.robot_name, self.yaml_config, 
                    self.motor_inertia, self.motor_gear_ration)
 
   def build_robot_wrapper(self):
-    robot = super.build_robot_wrapper()
+    robot = self.build_robot()
 
     self.q0 = se3util.zero(robot.nq)
     self.q0[:] = self.initial_configuration
