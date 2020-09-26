@@ -10,6 +10,11 @@ from pinocchio_bullet_wrapper import PinBulletWrapper
 
 
 dt = 1e-3
+root = os.getcwd()
+
+
+_urdf_path = lambda fn: root + '/urdf/{}.urdf'.format(fn)
+
 
 
 class Solo8Robot(PinBulletWrapper):
@@ -25,8 +30,7 @@ class Solo8Robot(PinBulletWrapper):
 			self.physicsClient = self.initPhysicsClient()
 
 		# Load the plain.
-		plain_urdf = (rospkg.RosPack().get_path("robot_properties_solo") +
-					  "/urdf/plane_with_restitution.urdf")
+		plain_urdf = _urdf_path('plane_with_restitution')
 		self.planeId = p.loadURDF(plain_urdf)
 
 		# Load the robot
