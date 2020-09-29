@@ -28,10 +28,10 @@ class Config(object):
     """_init Add base configuration onto the parser
 
     Args:
-        parser (argparse.ArgumentParser): The existing parser
+      parser (argparse.ArgumentParser): The existing parser
 
     Returns:
-        argparse.ArgumentParser: The parser with the new options appended to it.
+      argparse.ArgumentParser: The parser with the new options appended to it.
     """
     parser.add_argument('--model_root', help='root to the model meshes',
                         type=str, default='test')
@@ -43,7 +43,7 @@ class Config(object):
     """Parse the commandline args for the class's options.
 
     Returns:
-        argparse.Namespace: The configuration object
+      argparse.Namespace: The configuration object
     """
     if not self.init:
       parser = argparse.ArgumentParser()
