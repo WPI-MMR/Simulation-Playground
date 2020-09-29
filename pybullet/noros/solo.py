@@ -37,11 +37,8 @@ class BaseSolo(object):
   def __init__(self, model_path: str, robot_name: str, yaml_config: str,
                motor_inertia: float, motor_gear_ration: float):
     self.model_path = model_path
-    self.urdf_path: str = os.path.join(self.model_path, 
-                                       'urdf/{}.urdf'.format(robot_name))
-    self.mesh_path: str = os.path.join(self.model_path, 'meshes')
-    self.yaml_path: str = os.path.join(self.model_path,
-                                       'yaml/{}'.format(yaml_config))
+    self.urdf_path, self.mesh_path, self.yaml_path = util.model_to_subpaths(
+      model_path, robot_name, yaml_config)
 
     self.motor_inertia = motor_inertia
     self.motor_gear_ration = motor_gear_ration

@@ -1,6 +1,18 @@
 import argparse
 import os
 
+from typing import Tuple
+
+
+def model_to_subpaths(model_path:str, robot_name:str, yaml_config:str,
+                      urdf_folder: str = 'urdf', mesh_folder: str = 'meshes',
+                      yaml_folder: str = 'yaml') -> Tuple[str, str, str]:
+  urdf_path = os.path.join(model_path, '{}/{}.urdf'.format(urdf_folder,
+                                                           robot_name))
+  mesh_path = os.path.join(model_path, mesh_folder)
+  yaml_path = os.path.join(model_path, '{}/{}'.format(yaml_folder, yaml_config))
+
+  return urdf_path, mesh_path, yaml_path
 
 class Config(object):
   """ Argument parser + configuration class.
