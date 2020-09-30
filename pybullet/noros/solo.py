@@ -11,6 +11,17 @@ import pinocchio as se3
 
 
 class BaseSolo(object):
+  """The base solo class
+
+  Args:
+    model_path (str): The path to the root of the model folder
+    robot_name (str): Name of the robot, typically the name of the urdf file
+    yaml_config (str): Name of the yaml configuration
+    motor_inertia (float): Motor innertia constant
+    motor_gear_ration (float): Motor gear ratios
+
+  Returns:
+  """
   # PID gains
   kp: float = 5.0
   kd: float = 0.1
@@ -54,6 +65,7 @@ class BaseSolo(object):
    return self.motor_torque_constant * self.max_current
 
   def _build_robot(self):
+    """_build_robot Create a pinocchio/pybullet robot wrapper """
     # Rebuild the robot wrapper instead of using an existing model to also load
     # the visuals
     print('mesh path')

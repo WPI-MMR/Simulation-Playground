@@ -1,5 +1,4 @@
 import argparse
-import pathlib
 import os
 
 from typing import Tuple
@@ -8,6 +7,26 @@ from typing import Tuple
 def model_to_subpaths(model_path:str, robot_name:str, yaml_config:str,
                       urdf_folder: str = 'urdf', mesh_folder: str = 'meshes',
                       yaml_folder: str = 'yaml') -> Tuple[str, str, str]:
+  """model_to_subpaths Given a model path, convert it into its significant 
+  subparts. 
+
+  Args:
+      model_path (str): The path to the root of the model directory
+      robot_name (str): The name of the robot; typically the name of the urdf
+        file.
+      yaml_config (str): The name of the yaml configuration WITH THE FILE
+        EXTENSION
+      urdf_folder (str, optional): The name of the urdf folder. Defaults to 
+        'urdf'.
+      mesh_folder (str, optional): The name of the meshes folder. Defaults to 
+        'meshes'.
+      yaml_folder (str, optional): Name of the configuration files folder. 
+        Defaults to 'yaml'.
+
+  Returns:
+    Tuple[str, str, str]: The path to the urdf model file, the meshes folder, 
+    and the yaml configuration file path.
+  """
   urdf_path = os.path.join(model_path, '{}/{}.urdf'.format(urdf_folder,
                                                            robot_name))
   mesh_path = os.path.join(model_path, mesh_folder)
