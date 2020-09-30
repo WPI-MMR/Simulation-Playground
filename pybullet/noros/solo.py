@@ -56,6 +56,9 @@ class BaseSolo(object):
   def _build_robot(self):
     # Rebuild the robot wrapper instead of using an existing model to also load
     # the visuals
+    print('mesh path')
+    print(self.mesh_path)
+
     robot = se3robot_wrapper.RobotWrapper.BuildFromURDF(
       self.urdf_path, self.mesh_path, se3.JointModelFreeFlyer())
 
@@ -103,7 +106,7 @@ class Solo8Vanilla(BaseSolo):
                    self.motor_inertia, self.motor_gear_ration)
 
   def build_robot_wrapper(self):
-    robot = self.build_robot()
+    robot = self._build_robot()
 
     self.q0 = se3util.zero(robot.nq)
     self.q0[:] = self.initial_configuration

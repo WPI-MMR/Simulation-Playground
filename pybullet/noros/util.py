@@ -1,4 +1,5 @@
 import argparse
+import pathlib
 import os
 
 from typing import Tuple
@@ -34,7 +35,12 @@ class Config(object):
       argparse.ArgumentParser: The parser with the new options appended to it.
     """
     parser.add_argument('--model_root', help='root to the model meshes',
-                        type=str, default='test')
+                        type=str, default='../../model/')
+    parser.add_argument('--robot_name', help='The name of the robot, also the '
+                        'name of the urdf file', type=str, default='solo')
+    parser.add_argument('--yaml_config', help='The configuration of the robot.'
+                        'Note that you NEED TO INCLUDE THE FILE EXTENSION',
+                        type=str, default='dgm_parameters_solo8.yaml')
 
     self.init = True
     return parser
@@ -50,4 +56,6 @@ class Config(object):
       parser = self._init(parser)
     
     self.parser = parser
-    return parser.parse_args()
+    opt = parser.parse_args()
+
+    return opt

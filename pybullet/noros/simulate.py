@@ -6,6 +6,7 @@ import os
 
 from pinocchio_bullet_wrapper import PinBulletWrapper
 import util
+import solo
 
 
 dt = 1e-3
@@ -18,7 +19,7 @@ class Solo8Robot(PinBulletWrapper):
     client = p.connect(p.GUI)
     p.setGravity(0,0, -9.81)
     p.setPhysicsEngineParameter(fixedTimeStep=dt, numSubSteps=1)
-    return physicsClient
+    return client
 
   def __init__(self, config, physicsClient=None):
     self.config = config
@@ -32,6 +33,21 @@ class Solo8Robot(PinBulletWrapper):
     robotStartPos = [0., 0, 0.40]
     robotStartOrientation = p.getQuaternionFromEuler([0,0,0])
 
+    urdf_path, mesh_folder, yaml_path = util.model_to_subpaths(
+      self.config.model_root, self.config.robot_name, self.config.yaml_config)
+    urdf_folder = os.path.dirname(urdf_path)
 
+    self.robot_id = p.loadURDF(urdf_path, robotStartPos, robotStartOrientation,
+                               flags=p.URDF_USE_INERTIA_FROM_FILE,
+                               useFixedBase=False)
+    p.getBasePositionAndOrientation(self.robot_id)
+
+    num_joints = p.getNumJoints(self.robot_id)
+    for joint in range(num_joints):
+      p.changeDynamics(self.robot_id, joint, linearDamping=.04, 
+                       angularDamping=0.04, restitution=0.0, 
+                       lateralFriction=0.5
+    
 if __name__ == '__main__':
-  Solo8Robot()
+  client_opt = util.Config().parse()
+  robot = Solo8Robot(client_opt)

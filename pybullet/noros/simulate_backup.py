@@ -39,7 +39,7 @@ class Solo8Robot(PinBulletWrapper):
       useFixedBase=False)
     p.getBasePositionAndOrientation(self.robotId)
 
-    # Create the robot wrapper in pinocchio.
+    # Create the robot wrapper in pinocchio   
     package_dirs = [os.path.dirname(os.path.dirname(self.urdf_path)) + '/urdf']
     self.pin_robot = Solo8Config.buildRobotWrapper()
 
