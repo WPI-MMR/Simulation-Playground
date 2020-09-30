@@ -9,7 +9,8 @@ line when running these instructions.
 
 1. Create the virtual environment: `python3 -m venv venv-pybullet-noros`
 2. Activate it: `source venv-pybullet-noros/bin/activate`
-3. Install deps: `pip install -r requirements.txt`
+3. Upgrade your environment: `pip install -U wheel pip`
+4. Install deps: `pip install -r requirements.txt`
 
 And that's it! If you ever need to get out of the environment, simply enter
 `deactivate`.
